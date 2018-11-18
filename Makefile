@@ -8,7 +8,9 @@ OUTPUTDIR=$(BASEDIR)/output
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
-GITHUB_PAGES_BRANCH=gh-pages
+GITHUB_PAGES_REMOTE=git@github.com:djhoese/djhoese.github.io.git
+GITHUB_PAGES_BRANCH=master
+GIT_COMMIT_HASH = $(shell git rev-parse HEAD)
 
 
 DEBUG ?= 0
@@ -74,9 +76,13 @@ endif
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
-github: publish
-	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
-	git push origin $(GITHUB_PAGES_BRANCH)
+publish-to-github: publish
+	ghp-import -n -m "publish-to-github from $(GIT_COMMIT_HASH)" -b blog-build $(OUTPUTDIR)
+	git push $(GITHUB_PAGES_REMOTE) blog-build:$(GITHUB_PAGES_BRANCH)
+
+publish-to-github-force: publish
+	ghp-import -n -m "publish-to-github-force from $(GIT_COMMIT_HASH)" -b blog-build $(OUTPUTDIR)
+	git push -f $(GITHUB_PAGES_REMOTE) blog-build:$(GITHUB_PAGES_BRANCH)
 
 
-.PHONY: html help clean regenerate serve serve-global devserver stopserver publish github
+.PHONY: html help clean regenerate serve serve-global devserver stopserver publish publish-to-github publish-to-github-force
