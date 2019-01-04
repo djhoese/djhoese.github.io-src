@@ -20,11 +20,13 @@
                            href="{{ SITEURL }}/{{ FEED_RSS }}" /> 
     {% endif %}
 
+    {#
     {% if article %}
       {% if TWITTER_CARD_USE %}
         {% include "includes/twitter_card.html" %}
       {% endif %}
     {% endif %}
+    #}
 
     {% if EXTRA_HEADER %}
         {{ EXTRA_HEADER }}
