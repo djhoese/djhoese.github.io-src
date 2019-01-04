@@ -46,12 +46,15 @@ PLUGINS = [
     'liquid_tags.include_code',  # including code blocks
     'liquid_tags.literal',
     'liquid_tags.notebook',
+    'twitter_card',
 ]
 IGNORE_FILES = ['.ipynb_checkpoints']
 LIQUID_CONFIGS = (("IPYNB_EXPORT_TEMPLATE", "notebook.tpl", ""), )
 
+# Notebook plugin
 CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
+EXTRA_HEADER = open('_nb_header.html').read()
 
 TWITTER_USERNAME = 'djhoese'
 GITHUB_USERNAME = 'djhoese'
@@ -73,4 +76,15 @@ LINKS = (('PyTroll', 'http://pytroll.github.io/'),
 SOCIAL = (('Github', 'https://github.com/{}/'.format(GITHUB_USERNAME)),
          ('Twitter', 'https://twitter.com/{}'.format(TWITTER_USERNAME)),
          )
+
+#=============
+# Twitter Card
+#=============
+# https://dev.twitter.com/cards
+TWITTER_CARD_USE = True # (False)
+TWITTER_CARD_SITE = ''  # The site's Twitter handle like @my_blog
+TWITTER_CARD_SITE_ID = ''  # The site's Twitter ID
+TWITTER_CARD_CREATOR = '@djhoese'  # Your twitter handle like @monkmartinez
+TWITTER_CARD_CREATOR_ID = ''  # The site creator's id
+GRAVATAR_URL = ''
 

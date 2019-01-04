@@ -4,3 +4,6 @@
 [submodule "plugins/pelican-plugins"]
 	path = plugins/pelican-plugins
 	url = git://github.com/getpelican/pelican-plugins.git
+[submodule "plugins/twitter_card"]
+	path = plugins/twitter_card
+	url = git@github.com:MichaelMartinez/twitter_card.git
